@@ -1,6 +1,6 @@
 @use 'reset';
 @use 'themes';
-@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap');
+@import 'https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap';
 
 // font vars
 $tf-main: 'League Spartan', sans-serif;
@@ -17,5 +17,10 @@ $text-white: hsl(0, 0%, 100%);
     font-size: 32px;
     font-family: $tf-main;
 
-    @include theme-background(themes.$t1-main-bg, themes.$t1-toggle-bg, themes.$t1-screen-bg); 
+    // Sets up CSS vars to later use for theme switching. They default to the Theme 1 values
+    @include themes.theme-background(themes.$t1-main-bg, themes.$t1-toggle-bg, themes.$t1-screen-bg); 
+    @include themes.theme-keys(themes.$t1-key-bg-a, themes.$t1-key-shadow-a, 
+                               themes.$t1-key-bg-toggle, themes.$t1-key-shadow-b, 
+                               themes.$t1-key-bg-b, themes.$t1-key-shadow-c);
+    @include themes.theme-text(themes.$t1-text-highlights, themes.$t1-text-dark);
 }
