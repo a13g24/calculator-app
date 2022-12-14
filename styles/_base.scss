@@ -1,10 +1,6 @@
 @use 'reset';
-
-// fonts
+@use 'themes';
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap');
-
-// theme vars
-// TODO: Decide if using more scss modules for each theme, or just name diff vars here
 
 // font vars
 $tf-main: 'League Spartan', sans-serif;
@@ -12,8 +8,7 @@ $text-light-yellow: hsl(52, 100%, 62%);
 $text-dark-blue: hsl(198, 20%, 13%);
 $text-white: hsl(0, 0%, 100%);
 
-// universals 
-
+    // UNIVERSALS 
 * {
     box-sizing: border-box;
 }
@@ -21,4 +16,6 @@ $text-white: hsl(0, 0%, 100%);
 :root {
     font-size: 32px;
     font-family: $tf-main;
+
+    @include theme-background(themes.$t1-main-bg, themes.$t1-toggle-bg, themes.$t1-screen-bg); 
 }
