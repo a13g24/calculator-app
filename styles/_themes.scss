@@ -56,26 +56,46 @@ $t3-text-dark: hsl(198, 20%, 13%);
 
     // MIXINS FOR THEMES
 
+// Property names (separating for later use in __base.scss). To be used w var()
+// on relevant properties in _base.css.
+$main-bg-name: --main-bg;
+$toggle-bg-name: --toggle-bg;
+$screen-bg-name: --screen-bg;
+$key-bg-a-name: --key-bg-a;
+$key-shadow-a-name: --key-shadow-a;
+$key-bg-toggle-name: --key-bg-toggle;
+$key-shadow-b-name: --key-shadow-b;
+$key-bg-b-name: --key-bg-b;
+$key-shadow-c-name: --key-shadow-c;
+$text-highlights-name: --text-highlights;
+$text-dark-name: --text-dark;
+
 // Generates color vars for backgrounds
 @mixin theme-background($main-bg, $toggle-bg, $screen-bg) {
-    --main-bg: #{$main-bg};
-    --toggle-bg: #{$toggle-bg};
-    --screen-bg: #{$screen-bg};
+    #{$main-bg-name}: #{$main-bg};
+    #{$toggle-bg-name}: #{$toggle-bg};
+    #{$screen-bg-name}: #{$screen-bg};
 }
 
 
 // Generates color vars for keys
 @mixin theme-keys($key-bg-a, $key-shadow-a, $key-bg-toggle, $key-shadow-b, $key-bg-b, $key-shadow-c) {
-    --key-bg-a: #{$key-bg-a};
-    --key-shadow-a: #{$key-shadow-a};
-    --key-bg-toggle: #{$key-bg-toggle};
-    --key-shadow-b: #{$key-shadow-b};
-    --key-bg-b: #{$key-bg-b};
-    --key-shadow-c: #{$key-shadow-c};
+    #{$key-bg-a-name}: #{$key-bg-a};
+    #{$key-shadow-a-name}: #{$key-shadow-a};
+    #{$key-bg-toggle-name}: #{$key-bg-toggle};
+    #{$key-shadow-b-name}: #{$key-shadow-b};
+    #{$key-bg-b-name}: #{$key-bg-b};
+    #{$key-shadow-c-name}: #{$key-shadow-c};
 }
 
 // Generates color vars for text
 @mixin theme-text($text-highlights, $text-dark) {
-    --text-highlights: #{$text-highlights};
-    --text-dark: #{$text-dark};
+    #{$text-highlights-name}: #{$text-highlights};
+    #{$text-dark-name}: #{$text-dark};
 }
+
+// Abandoned this idea. It ends up being more code to write in _base.scss my @including it
+// just to make a single property.
+// @mixin use-color-on-prop($property, $color) {
+//     #{$property}: var($color);
+// }

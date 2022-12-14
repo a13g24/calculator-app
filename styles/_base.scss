@@ -2,7 +2,7 @@
 @use 'themes';
 @import 'https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap';
 
-// font vars
+// Font vars
 $tf-main: 'League Spartan', sans-serif;
 $text-light-yellow: hsl(52, 100%, 62%);
 $text-dark-blue: hsl(198, 20%, 13%);
@@ -23,4 +23,35 @@ $text-white: hsl(0, 0%, 100%);
                                themes.$t1-key-bg-toggle, themes.$t1-key-shadow-b, 
                                themes.$t1-key-bg-b, themes.$t1-key-shadow-c);
     @include themes.theme-text(themes.$t1-text-highlights, themes.$t1-text-dark);
+}
+
+/* FIXME: This is just an example of how I'd actually put the css vars with the needed property inside it. Remove later and replace w relevant class/selector. */
+body {
+    background: var(themes.$toggle-bg-name); // remember to always use the themes var with var()
+}
+
+// Make HTML attr selectors
+$themes: theme-one, theme-two, theme-three;
+@each $theme in $themes {
+    html[data-theme=#{$theme}] {
+        @if $theme == theme-one {
+            @include themes.theme-background(themes.$t1-main-bg, themes.$t1-toggle-bg, themes.$t1-screen-bg); 
+            @include themes.theme-keys(themes.$t1-key-bg-a, themes.$t1-key-shadow-a, 
+                                    themes.$t1-key-bg-toggle, themes.$t1-key-shadow-b, 
+                                    themes.$t1-key-bg-b, themes.$t1-key-shadow-c);
+            @include themes.theme-text(themes.$t1-text-highlights, themes.$t1-text-dark);
+        } @else if $theme == theme-two {
+            @include themes.theme-background(themes.$t2-main-bg, themes.$t2-toggle-bg, themes.$t2-screen-bg); 
+            @include themes.theme-keys(themes.$t2-key-bg-a, themes.$t2-key-shadow-a, 
+                                    themes.$t2-key-bg-toggle, themes.$t2-key-shadow-b, 
+                                    themes.$t2-key-bg-b, themes.$t2-key-shadow-c);
+            @include themes.theme-text(themes.$t2-text-highlights, themes.$t2-text-dark);
+        } @else if $theme == theme-three {
+            @include themes.theme-background(themes.$t3-main-bg, themes.$t3-toggle-bg, themes.$t3-screen-bg); 
+            @include themes.theme-keys(themes.$t3-key-bg-a, themes.$t3-key-shadow-a, 
+                                    themes.$t3-key-bg-toggle, themes.$t3-key-shadow-b, 
+                                    themes.$t3-key-bg-b, themes.$t3-key-shadow-c);
+            @include themes.theme-text(themes.$t3-text-highlights, themes.$t3-text-dark);
+        }
+    }
 }
