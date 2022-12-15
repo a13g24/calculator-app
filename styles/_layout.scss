@@ -1,21 +1,71 @@
-$mobile-max-width: 375px;
-$desktop-max-width: 1440px;
+// Variables
+$mobile-width: 375px;
+$desktop-width: 1440px;
 
 // Outlines current element
 @mixin debug($color: red) {
     border: 1px solid $color;
 }
 
-.container {
+/* Universal Layout Styles */
+.page {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    flex-flow: column;
     min-height: 100vh;
 }
 
 .calc {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
     margin: 3em auto 0;
-    max-width: $mobile-max-width;
+    padding: 1em;
+    min-width: 350px;
+    width: 90%;
+    max-width: 500px;
+
     @include debug();
+    > * {
+        @include debug(cyan);
+    }
+
+    &__top-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 3em;
+
+        > * {
+            @include debug(orange);
+        }
+    }
+
+    &__theme-container {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+
+        > * {
+            @include debug();
+        }
+    }
+
+    // TODO: Need to import the component for the switch once it's ready. Unsure if this way is going to work.
+    &__switch-container {
+        display: flex;  
+    }
+}
+
+
+/* Mobile Styles */
+@media only screen and (max-width: $mobile-width) {
+    .calc {
+        background-color: green;
+    }
+}
+
+/* Desktop Styles */
+@media only screen and (min-width: $desktop-width) {
 }

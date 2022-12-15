@@ -57,17 +57,3 @@ $themes: theme-one, theme-two, theme-three;
 }
 
 // TODO: Style all the components once you've finished layout.
-
-.container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-flow: column;
-    min-height: 100vh;
-}
-
-.calc {
-    margin: 0 auto;
-    min-width: 375px;
-    border: 1px solid red;
-}
