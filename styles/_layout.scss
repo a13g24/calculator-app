@@ -1,0 +1,21 @@
+$mobile-max-width: 375px;
+$desktop-max-width: 1440px;
+
+// Outlines current element
+@mixin debug($color: red) {
+    border: 1px solid $color;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: column;
+    min-height: 100vh;
+}
+
+.calc {
+    margin: 3em auto 0;
+    max-width: $mobile-max-width;
+    @include debug();
+}
