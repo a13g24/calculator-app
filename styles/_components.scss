@@ -1,49 +1,74 @@
 @use 'themes';
 
+// TODO: border: none on all buttons then add border bottom to create bottom border
+
 button {
-    background-color: #fff;
-    border-radius: 3px;
-    border: 1px solid #c4c4c4;
-    background-color: transparent;
-    font-size: .8em;
-    color: rgb(253, 253, 253);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .05), inset 0 1px 0 0 rgba(255, 255, 255, .45), inset 0 -1px 0 0 rgba(255, 255, 255, .15), 0 1px 0 0 rgba(255, 255, 255, .15);
-    text-shadow: 0 1px rgba(255, 255, 255, .4);
+    border: none;
+    font-family: inherit;
+    font-size: .9em;
+    background-color: var(themes.$key-bg-b-name);
+    color: var(themes.$text-highlights-name);
+    border-radius: 4px;
     cursor: pointer;
+    padding: {
+        top: 12px;
+        bottom: 5px;
+    }
 
     &:hover {
-        background-color: #eaeaea;
+        // background-color: #eaeaea;
     }
 }
 
-
 .operator {
-    font-size: .6em;
-    color: #337cac;
+    font-size: .8em;
 }
 
 .all-clear {
-    background-color: #f0595f;
-    border-color: #b0353a;
-    color: #fff;
+    background-color: var(themes.$key-bg-toggle-name);
+    border-color: var(themes.$key-shadow-b-name);
+    color: var(themes.$text-dark-name);
 
     &:hover {
-        background-color: #f17377;
+        // background-color: #f17377;
     }
 }
 
 .equal-sign {
-    background-color: #2e86c0;
-    border-color: #337cac;
-    color: #fff;
+    background-color: var(themes.$key-bg-a-name);
+    border-color: var(themes.$key-shadow-a-name);
+    color: var(themes.$text-dark-name);
 
     &:hover {
-        background-color: #4e9ed4;
+        // background-color: #4e9ed4;
     }
+}
+
+.delete {
+    background-color: var(themes.$key-bg-a-name);
+    border-color: var(themes.$key-shadow-a-name);
+    color: var(themes.$key-bg-b-name);
 }
 
 .all-clear,
 .delete,
 .equal-sign {
     font-size: .60em;
+}
+
+.calculator {
+    background-color: var(themes.$main-bg-name);
+
+    &__keys {
+        background-color: var(themes.$toggle-bg-name);
+        border-radius: 9px;
+    }
+
+    &__screen {
+        font-size: 1.2em;
+        background-color: var(themes.$screen-bg-name);
+        color: var(themes.$text-dark-name);
+        border: none;
+        border-radius: 5px;
+    }
 }
