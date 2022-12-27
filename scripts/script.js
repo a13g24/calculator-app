@@ -1,0 +1,1 @@
+let toggleSwitch = document.getElementsByClassName('tri-state-toggle__button');
