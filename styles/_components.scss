@@ -1,12 +1,13 @@
 @use 'themes';
 
-// TODO: border: none on all buttons then add border bottom to create bottom border
-
 button {
     border: none;
     font-family: inherit;
     font-size: .9em;
     background-color: var(themes.$key-bg-b-name);
+    border: {
+        bottom: 3px solid var(themes.$key-shadow-c-name);
+    }
     color: var(themes.$text-highlights-name);
     border-radius: 4px;
     cursor: pointer;
@@ -16,7 +17,11 @@ button {
     }
 
     &:hover {
-        // background-color: #eaeaea;
+        opacity: .9;
+    }
+    &:active {
+        box-shadow: inset 0px 1px 0px 1px var(themes.$key-shadow-a-name);
+        border: none;
     }
 }
 

@@ -10,22 +10,25 @@
   <title>Frontend Mentor | Calculator app</title>
 
   <style>
-    .attribution { font-size: 11px; text-align: center; }
+    .attribution { font-size: 9px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
 </head>
 <body>
   <div class="page">
     <div class="calculator">
-      <div class="top">
-        <h1 class="title">calc</h1>
+      <div class="title-container">
+        <h1 class="calculator__title">calc</h1>
 
-        <div class="theme-picker">
-          <p class="theme-picker__title">THEME</p>
+        <div class="theme-picker-container">
+          <h2 class="calculator__theme-title">THEME</h2>
+
+          <!-- TODO: insert code for 3-way toggle switch -->
         </div>
       </div>
       <input type="text" class="calculator__screen" value="0" disable />
 
+      <!-- TODO: add modifier BEM class to each button for "press" action -->
       <div class="calculator__keys">
         <!-- operator buttons -->
         <button class="operator add-sign" type="button" value="+">+</button>
@@ -54,7 +57,7 @@
     </div>
     <div class="attribution">
       Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-      Coded by <a href="#">Your Name Here</a>.
+      Coded by <a href="#">Aaron Gomez</a>.
     </div>
   </div>
 </body>
