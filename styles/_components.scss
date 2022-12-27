@@ -61,7 +61,7 @@ button {
     }
 
     &:hover {
-        opacity: .9;
+        opacity: .95;
     }
     &:active {
         box-shadow: inset 0px 0px 0px 1px var(themes.$screen-bg-name);
@@ -69,6 +69,19 @@ button {
     }
     &:focus-visible {
         outline: 2px solid var(themes.$text-dark-name);
+    }
+}
+
+// Hack to correct color on first theme in top and screen locations
+html[data-theme=theme-one] {
+    .calculator {
+        &__title-container {
+            color: var(themes.$text-dark-name);
+        }
+
+        &__screen {
+            color: var(themes.$text-dark-name);
+        }
     }
 }
 
@@ -84,7 +97,7 @@ button {
 .equal-sign {
     background-color: var(themes.$key-bg-a-name);
     border-color: var(themes.$key-shadow-a-name);
-    color: var(themes.$text-dark-name);
+    color:  themes.$t3-extra-white-text;
 }
 .delete {
     font-size: .5em;
@@ -93,7 +106,7 @@ button {
     }
     background-color: var(themes.$key-bg-a-name);
     border-color: var(themes.$key-shadow-a-name);
-    color: var(themes.$key-bg-b-name);
+    color: themes.$t3-extra-white-text;
 }
 .all-clear,
 .equal-sign {
@@ -105,7 +118,7 @@ button {
     background-color: var(themes.$main-bg-name);
 
     &__title-container {
-        color: var(themes.$text-dark-name);
+        color: var(themes.$text-highlights-name);
         height: 56px;
     }
 
@@ -128,7 +141,7 @@ button {
         font-size: 1.2em;
         font-weight: 700;
         background-color: var(themes.$screen-bg-name);
-        color: var(themes.$text-dark-name);
+        color: var(themes.$text-highlights-name);
         border: none;
         border-radius: 5px;
 
@@ -137,3 +150,4 @@ button {
         }
     }
 }
+

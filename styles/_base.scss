@@ -53,6 +53,7 @@ $themes: theme-one, theme-two, theme-three;
                                     themes.$t3-key-bg-toggle, themes.$t3-key-shadow-b, 
                                     themes.$t3-key-bg-b, themes.$t3-key-shadow-c);
             @include themes.theme-text(themes.$t3-text-highlights, themes.$t3-text-dark);
+            --extra-white-text: #{themes.$t3-extra-white-text};
         }
     }
 }

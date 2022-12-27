@@ -19,7 +19,8 @@ $t1-key-shadow-c: hsl(28, 16%, 65%);
 // Theme 1 - text
 $t1-text-highlights: hsl(221, 14%, 31%);
 $t1-text-dark: hsl(0, 0%, 100%);
-
+// $t1-text-highlights: hsl(0, 0%, 100%);
+// $t1-text-dark: hsl(221, 14%, 31%);
 
 // Theme 2 - background
 $t2-main-bg: hsl(0, 0%, 90%);
@@ -40,7 +41,7 @@ $t2-text-dark: hsl(0, 0%, 100%);
 // Theme 3 - background
 $t3-main-bg: hsl(268, 75%, 9%);
 $t3-toggle-bg: hsl(268, 71%, 12%);
-$t3-screen-bg: hsl(0, 0%, 93%); // not specified in spec; leaving same as t2
+$t3-screen-bg: hsl(268, 71%, 12%); // not specified in spec; leaving same as t2
 // Theme 3 - keys
 $t3-key-bg-a: hsl(281, 89%, 26%);
 $t3-key-shadow-a: hsl(285, 91%, 52%);
@@ -52,6 +53,7 @@ $t3-key-shadow-c: hsl(290, 70%, 36%);
 $t3-text-highlights: hsl(52, 100%, 62%);
 $t3-text-dark: hsl(198, 20%, 13%);
 // there was an extra one in spec: white(text): hsl(0, 0%, 100%); I can't use it since it breaks the mixins
+$t3-extra-white-text: hsl(0, 0%, 100%); // inserted the extra one here 
 
 
     // MIXINS FOR THEMES
