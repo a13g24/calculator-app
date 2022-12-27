@@ -17,18 +17,22 @@
 <body>
   <div class="page">
     <div class="calculator">
-      <div class="title-container">
+      <div class="calculator__title-container">
         <h1 class="calculator__title">calc</h1>
 
-        <div class="theme-picker-container">
+        <div class="calculator__theme-picker-container">
           <h2 class="calculator__theme-title">THEME</h2>
 
           <!-- TODO: insert code for 3-way toggle switch -->
+          <div class="tri-state-toggle">
+            <input type="radio" class="tri-state-toggle__button" name="toggle" id="one" />
+            <input type="radio" class="tri-state-toggle__button" name="toggle" id="one" />
+            <input type="radio" class="tri-state-toggle__button" name="toggle" id="one" />
+          </div>
         </div>
       </div>
       <input type="text" class="calculator__screen" value="0" disable />
 
-      <!-- TODO: add modifier BEM class to each button for "press" action -->
       <div class="calculator__keys">
         <!-- operator buttons -->
         <button class="operator add-sign" type="button" value="+">+</button>

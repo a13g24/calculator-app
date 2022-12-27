@@ -26,6 +26,18 @@ $desktop-width: 1440px;
     width: 90%;
     max-width: 500px;
 
+    &__title-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__theme-picker-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 137px;
+    }
+
     &__screen {
         font-family: inherit;
         font-size: 2em;

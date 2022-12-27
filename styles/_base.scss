@@ -1,6 +1,6 @@
 @use 'reset';
 @use 'themes';
-@import 'https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap';
 
 // Font vars
 $tf-main: 'League Spartan', sans-serif;
@@ -16,6 +16,7 @@ $text-white: hsl(0, 0%, 100%);
 :root {
     font-size: 32px;
     font-family: $tf-main;
+    font-weight: 700;
 
     // Sets up CSS vars to later use for theme switching. They default to the Theme 1 values
     @include themes.theme-background(themes.$t1-main-bg, themes.$t1-toggle-bg, themes.$t1-screen-bg); 

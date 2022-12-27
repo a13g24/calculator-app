@@ -4,6 +4,7 @@ button {
     border: none;
     font-family: inherit;
     font-size: .9em;
+    font-weight: 700;
     background-color: var(themes.$key-bg-b-name);
     border: {
         bottom: 3px solid var(themes.$key-shadow-c-name);
@@ -64,6 +65,18 @@ button {
 .calculator {
     background-color: var(themes.$main-bg-name);
 
+    &__title-container {
+        color: var(themes.$text-dark-name);
+        height: 56px;
+    }
+
+    &__theme-title {
+        font-size: .3em;
+        font-weight: 400;
+        letter-spacing: .1em;
+    }
+
+
     &__keys {
         background-color: var(themes.$toggle-bg-name);
         border-radius: 9px;
@@ -71,6 +84,7 @@ button {
 
     &__screen {
         font-size: 1.2em;
+        font-weight: 700;
         background-color: var(themes.$screen-bg-name);
         color: var(themes.$text-dark-name);
         border: none;
