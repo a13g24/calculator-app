@@ -1,5 +1,33 @@
 @use 'themes';
 
+// 3-Way toggle switch
+input[type=radio] {
+    padding: 0;
+    margin: 2px;
+    height: 15px;
+    width: 15px;
+    appearance: none;
+    background-color: var(themes.$key-bg-toggle-name);
+    border-radius: 50%;
+    // opacity: 0;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+.tri-state-toggle {
+    display: flex;
+    justify-content: center;
+    border: 3px solid var(themes.$toggle-bg-name);
+    background-color: var(themes.$toggle-bg-name);
+    border-radius: 50px;
+}
+#one {
+    opacity: 1;
+}
+
+
+// Key buttons
 button {
     border: none;
     font-family: inherit;
@@ -24,44 +52,37 @@ button {
         box-shadow: inset 0px 1px 0px 1px var(themes.$key-shadow-a-name);
         border: none;
     }
+    &:focus-visible {
+        outline: 2px solid var(themes.$text-dark-name);
+    }
 }
 
+// Special buttons
 .operator {
     font-size: .8em;
 }
-
 .all-clear {
     background-color: var(themes.$key-bg-toggle-name);
     border-color: var(themes.$key-shadow-b-name);
     color: var(themes.$text-dark-name);
-
-    &:hover {
-        // background-color: #f17377;
-    }
 }
-
 .equal-sign {
     background-color: var(themes.$key-bg-a-name);
     border-color: var(themes.$key-shadow-a-name);
     color: var(themes.$text-dark-name);
-
-    &:hover {
-        // background-color: #4e9ed4;
-    }
 }
-
 .delete {
     background-color: var(themes.$key-bg-a-name);
     border-color: var(themes.$key-shadow-a-name);
     color: var(themes.$key-bg-b-name);
 }
-
 .all-clear,
 .delete,
 .equal-sign {
     font-size: .60em;
 }
 
+// General attributes for calculator
 .calculator {
     background-color: var(themes.$main-bg-name);
 
@@ -72,10 +93,9 @@ button {
 
     &__theme-title {
         font-size: .3em;
-        font-weight: 400;
+        font-weight: 500;
         letter-spacing: .1em;
     }
-
 
     &__keys {
         background-color: var(themes.$toggle-bg-name);
@@ -89,5 +109,9 @@ button {
         color: var(themes.$text-dark-name);
         border: none;
         border-radius: 5px;
+
+        &:focus-visible {
+            outline: 2px solid var(themes.$text-dark-name);
+        }
     }
 }
