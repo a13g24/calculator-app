@@ -9,7 +9,7 @@ input[type=radio] {
     appearance: none;
     background-color: var(themes.$key-bg-toggle-name);
     border-radius: 50%;
-    // opacity: 0;
+    opacity: 0;
 
     &:hover {
         cursor: pointer;
@@ -26,7 +26,22 @@ input[type=radio] {
     opacity: 1;
 }
 
+// Toggle button labels
+.toggle-container {
+    .tri-state-toggle-labels {
+        display: flex;
+        justify-content: space-evenly;
+        margin: {
+            bottom: 3px;
+        }
+    }
 
+    label {
+        cursor: pointer;
+        font-weight: 500; 
+        font-size: .3em;
+    }
+}
 // Key buttons
 button {
     border: none;
@@ -49,7 +64,7 @@ button {
         opacity: .9;
     }
     &:active {
-        box-shadow: inset 0px 1px 0px 1px var(themes.$key-shadow-a-name);
+        box-shadow: inset 0px 0px 0px 1px var(themes.$screen-bg-name);
         border: none;
     }
     &:focus-visible {
@@ -72,12 +87,15 @@ button {
     color: var(themes.$text-dark-name);
 }
 .delete {
+    font-size: .5em;
+    padding: {
+        top: 8px;
+    }
     background-color: var(themes.$key-bg-a-name);
     border-color: var(themes.$key-shadow-a-name);
     color: var(themes.$key-bg-b-name);
 }
 .all-clear,
-.delete,
 .equal-sign {
     font-size: .60em;
 }
@@ -94,7 +112,11 @@ button {
     &__theme-title {
         font-size: .3em;
         font-weight: 500;
-        letter-spacing: .1em;
+        letter-spacing: .15em;
+        align-self: flex-end;
+        margin: {
+            bottom: 15px;
+        }
     }
 
     &__keys {
