@@ -1,5 +1,5 @@
 // global var to keep track of per term decimals
-let decimalCounter = 0;
+let decimalCounter = false;
 let calcKeys = document.querySelector('.calculator__keys');
 let screen = document.querySelector('.calculator__screen');
 
@@ -51,7 +51,8 @@ calcKeys.addEventListener('click', (e) => {
  */
 function adjustStringSize(s) {
     // get computed values of screen
-    const THRESHOLD = 0.80;
+    const MAX_THRESHOLD = 0.60;
+    const MIN_THRESHOLD = .50;
     let computed = window.getComputedStyle(screen);
     let cWidth = Number(computed.getPropertyValue('width').replace('px', ''));
 
@@ -66,12 +67,17 @@ function adjustStringSize(s) {
     let ratio = (calculatedLength / cWidth);
 
     console.log(`cWidth = ${cWidth}\nTxt Width = ${calculatedLength}\nratio= ${ratio}`);
+    screenTxtLength = calculatedLength;
 
-    if (ratio > THRESHOLD) {
+    if (ratio > MAX_THRESHOLD) {
         console.log('Hit');
-        let newFontSize = Number(getComputedStyle(screen).getPropertyValue('font-size').replace('px', '')) * 0.9;
-        // newFontSize -= 1;
+        let newFontSize = screen.value.length / screenTxtLength * cWidth;
         screen.style.fontSize = `${newFontSize}px`;
+        console.log(`newFontSize = ${newFontSize}`);
+    }
+    
+    if (ratio < MIN_THRESHOLD) {
+        screen.style.fontSize = '';
     }
 }
 
@@ -142,28 +148,32 @@ function handleOperator(opKey) {
         screen.value += opKey.value;
     }
     
-    if (decimalCounter === 1)
-        decimalCounter--;
+    if (decimalCounter)
+        decimalCounter = false;
 }
 
-// Handle other keys
+/**
+ * Handles the other keys that are selected which include:
+ *  decimal, all-clear, equal-sign, delete
+ * @param {Object} otherKey - The key target
+ */
 function handleOther(otherKey) {
     switch (otherKey.classList[1]) {
         case 'decimal':
-            console.log('decimal');
             insertDecimal(otherKey);
             break;
         case 'all-clear':
             screen.value = '0';
-            decimalCounter = 0;
+            decimalCounter = false;
             screen.style.fontSize = '';
             break;
         case 'equal-sign':
-            console.log('equals');
-            decimalCounter = 0;
+            calculate();
+            decimalCounter = false;
             break;
         case 'delete':
-            console.log('delete');
+            deleteLastEntry(otherKey);
+            adjustStringSize(screen.value);
     }
 }
 
@@ -173,7 +183,7 @@ function handleOther(otherKey) {
  */
 function insertDecimal(key) {
     // only insert if decimal not already in string
-    if (decimalCounter === 0) {
+    if (!decimalCounter) {
         let lastDex = screen.value.length - 1;
         if (isAnOperator(screen.value[lastDex])) {
             screen.value += '0';       
@@ -182,6 +192,47 @@ function insertDecimal(key) {
         screen.value += key.value;
 
         // keep track of if decimal was entered in this term
-        decimalCounter++;
+        decimalCounter = true;
     } 
+}
+
+/**
+ * Deletes the last entry on the screen
+ * @param {Object} key - The delete key object
+ * @returns NULL
+ */
+function deleteLastEntry(key) {
+    let lastChar = screen.value[screen.value.length - 1];
+
+    // flip decimal counter bit for current term
+    if (lastChar === '.') {
+        // handles special case <op><period>0
+        if (screen.value.substring(screen.value.length - 3).search(/([+-\/\*]0\.)/g) != -1) {
+            console.log('<op>0. found!');
+            screen.value = screen.value.substring(0, screen.value.length - 2);
+        } else if (screen.value.substring(screen.value.length - 2).search(/\d\./g) != -1) {
+        // handles case <digit><period>
+            screen.value = screen.value.substring(0, screen.value.length - 1);
+        }
+
+        // flip decimal counter
+        decimalCounter = !decimalCounter;
+
+        // exit early
+        return null;
+    }
+
+    // don't delete only entry on screen
+    if (screen.value.length === 1) {
+        screen.value = '0';
+    } else {
+        screen.value = screen.value.substring(0, screen.value.length - 1);
+    }
+}
+
+/**
+ * Evaluates expression on screen
+ */
+function calculate() {
+    screen.value = eval(screen.value);
 }
