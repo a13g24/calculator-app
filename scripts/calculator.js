@@ -1,10 +1,10 @@
-// global var to keep track of per term decimals
-let decimalCounter = false;
-let calcKeys = document.querySelector('.calculator__keys');
-let screen = document.querySelector('.calculator__screen');
 
-let letterLength = {};  // stores approx letter lengths
-let screenTxtLength = 0; // approx length of string in screen
+let decimalCounter = false;                                     // global var to keep track of per term decimals
+let calcKeys = document.querySelector('.calculator__keys');     // parent of keys to bubble up from and listen as they are pressed
+let screen = document.querySelector('.calculator__screen');     // screen element
+
+let letterLength = {};      // stores approx letter lengths
+let screenTxtLength = 0;    // approx length of string in screen (not used)
 
 // calculate letter lengths when DOM loaded
 addEventListener('DOMContentLoaded', (e) => {
