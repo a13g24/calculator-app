@@ -14,7 +14,8 @@
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
 
-  <script src="./scripts/script.js" defer></script>
+  <script src="./scripts/theme-switcher.js" defer></script>
+  <script src="./scripts/calculator.js" defer></script>
 </head>
 <body>
   <div class="page">
@@ -41,7 +42,7 @@
           </div>
         </div>
       </div>
-      <input type="text" class="calculator__screen" value="0" disable />
+      <input type="text" class="calculator__screen" value="0" disabled />
 
       <div class="calculator__keys">
         <!-- operator buttons -->
@@ -63,10 +64,10 @@
         <button class="number" type="button" value="0">0</button>
 
         <!-- other buttons -->
-        <button class="decimal" type="button" value=".">.</button>
-        <button class="all-clear" type="button" value="all-clear">AC</button>
-        <button class="equal-sign" type="button" value="=">=</button>
-        <button class="delete" type="button" value="delete">DEL</button>
+        <button class="other decimal" type="button" value=".">.</button>
+        <button class="other all-clear" type="button" value="all-clear">AC</button>
+        <button class="other equal-sign" type="button" value="=">=</button>
+        <button class="other delete" type="button" value="delete">DEL</button>
       </div>
     </div>
     <div class="attribution">
