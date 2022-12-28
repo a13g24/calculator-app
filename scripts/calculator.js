@@ -234,5 +234,5 @@ function deleteLastEntry(key) {
  * Evaluates expression on screen
  */
 function calculate() {
-    screen.value = eval(screen.value);
+    screen.value = eval(screen.value.replace(/,/g, ''));
 }
