@@ -1,6 +1,25 @@
+// global var to keep track of per term decimals
+let decimalCounter = 0;
 let calcKeys = document.querySelector('.calculator__keys');
 let screen = document.querySelector('.calculator__screen');
-// let operandList = [];
+
+let letterLength = {};  // stores approx letter lengths
+let screenTxtLength = 0; // approx length of string in screen
+
+// calculate letter lengths when DOM loaded
+addEventListener('DOMContentLoaded', (e) => {
+    let letters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', ',', '+', '-', '*', '/'];
+
+    // calculate width of each letter
+    for (let letter of letters) {
+        let span = document.createElement('span');
+        span.append(document.createTextNode(letter));
+        span.style.display = "inline-block";
+        document.body.append(span);
+        letterLength[letter] = span.offsetWidth /*+ "px"*/;
+        span.remove();
+    }
+});
 
 // Handle all key click events
 calcKeys.addEventListener('click', (e) => {
@@ -15,12 +34,46 @@ calcKeys.addEventListener('click', (e) => {
         case 'number':
         // Handle Numbers 0 thru 9
             handleNumber(selectedKey);
+            // adjust screen size according to current length
+            adjustStringSize(screen.value);
             break;
         case 'other':
         // Handle others ., all-clear, =, delete
             handleOther(selectedKey);
     }
+
 });
+
+
+/**
+ * Function to check if string text in screen needs size adjustment
+ * @param {string} s - The screen string to adjust
+ */
+function adjustStringSize(s) {
+    // get computed values of screen
+    const THRESHOLD = 0.80;
+    let computed = window.getComputedStyle(screen);
+    let cWidth = Number(computed.getPropertyValue('width').replace('px', ''));
+
+    let calculatedLength = 0;
+
+    // calculate approx width of screen text
+    for (let i = 0; i < s.length; i++) {
+        calculatedLength += letterLength[s[i]];
+        // console.log(s[i] + ": " + letterLength[s[i]])
+    }
+    
+    let ratio = (calculatedLength / cWidth);
+
+    console.log(`cWidth = ${cWidth}\nTxt Width = ${calculatedLength}\nratio= ${ratio}`);
+
+    if (ratio > THRESHOLD) {
+        console.log('Hit');
+        let newFontSize = Number(getComputedStyle(screen).getPropertyValue('font-size').replace('px', '')) * 0.9;
+        // newFontSize -= 1;
+        screen.style.fontSize = `${newFontSize}px`;
+    }
+}
 
 /**
  * Replaces commas in string with empty strings.
@@ -63,9 +116,13 @@ function handleNumber(numKey) {
     screen.value += enteredValue;
 
     // insert new commas
-    // See https://linuxhint.com/add-commas-number-javascript/#:~:text=JavaScript%20provides%20toLocaleString()%2C%20regex,a%20comma%20after%20the%20digit
-    const regex = /\B(?=(\d{3})+(?!\d))/g;
-    screen.value = screen.value.replace(regex, ',');
+    const regexOne = /(^|[^0-9.])([0-9]{4,})/g; // selects part before decimal
+    const regexTwo = /[0-9](?=(?:[0-9]{3})+(?![0-9]))/g; // selects every 3rd num
+
+    // ensures only part before decimal is comma delimited
+    screen.value = screen.value.replace(regexOne, ($0, $1, $2) => {
+        return $1 + $2.replace(regexTwo, '$&,');
+    })
 }
 
 /**
@@ -84,23 +141,47 @@ function handleOperator(opKey) {
     } else {
         screen.value += opKey.value;
     }
+    
+    if (decimalCounter === 1)
+        decimalCounter--;
 }
 
 // Handle other keys
-function handleOther(other) {
-    console.log('Handling other key');
-
-    switch (other.classList[1]) {
+function handleOther(otherKey) {
+    switch (otherKey.classList[1]) {
         case 'decimal':
             console.log('decimal');
+            insertDecimal(otherKey);
             break;
         case 'all-clear':
-            console.log('AC');
+            screen.value = '0';
+            decimalCounter = 0;
+            screen.style.fontSize = '';
             break;
         case 'equal-sign':
             console.log('equals');
+            decimalCounter = 0;
             break;
         case 'delete':
             console.log('delete');
     }
+}
+
+/**
+ * Inserts a decimal into a term.
+ * @param {Object} key - The key object (decimal) to insert
+ */
+function insertDecimal(key) {
+    // only insert if decimal not already in string
+    if (decimalCounter === 0) {
+        let lastDex = screen.value.length - 1;
+        if (isAnOperator(screen.value[lastDex])) {
+            screen.value += '0';       
+        }
+
+        screen.value += key.value;
+
+        // keep track of if decimal was entered in this term
+        decimalCounter++;
+    } 
 }
