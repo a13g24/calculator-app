@@ -1,0 +1,337 @@
+@import 'https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&display=swap';
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 32px;
+  font-family: "League Spartan", sans-serif;
+  font-weight: 700;
+  --main-bg: hsl(222deg, 26%, 31%);
+  --toggle-bg: hsl(223deg, 31%, 20%);
+  --screen-bg: hsl(224deg, 36%, 15%);
+  --key-bg-a: hsl(225deg, 21%, 49%);
+  --key-shadow-a: hsl(224deg, 28%, 35%);
+  --key-bg-toggle: hsl(6deg, 63%, 50%);
+  --key-shadow-b: hsl(6deg, 70%, 34%);
+  --key-bg-b: hsl(30deg, 25%, 89%);
+  --key-shadow-c: hsl(28deg, 16%, 65%);
+  --text-highlights: hsl(221deg, 14%, 31%);
+  --text-dark: hsl(0deg, 0%, 100%);
+}
+
+/* FIXME: This is just an example of how I'd actually put the css vars with the needed property inside it. Remove later and replace w relevant class/selector. */
+body {
+  background: var(--toggle-bg);
+}
+
+html[data-theme=theme-one] {
+  --main-bg: hsl(222deg, 26%, 31%);
+  --toggle-bg: hsl(223deg, 31%, 20%);
+  --screen-bg: hsl(224deg, 36%, 15%);
+  --key-bg-a: hsl(225deg, 21%, 49%);
+  --key-shadow-a: hsl(224deg, 28%, 35%);
+  --key-bg-toggle: hsl(6deg, 63%, 50%);
+  --key-shadow-b: hsl(6deg, 70%, 34%);
+  --key-bg-b: hsl(30deg, 25%, 89%);
+  --key-shadow-c: hsl(28deg, 16%, 65%);
+  --text-highlights: hsl(221deg, 14%, 31%);
+  --text-dark: hsl(0deg, 0%, 100%);
+}
+
+html[data-theme=theme-two] {
+  --main-bg: hsl(0deg, 0%, 90%);
+  --toggle-bg: hsl(0deg, 5%, 81%);
+  --screen-bg: hsl(0deg, 0%, 93%);
+  --key-bg-a: hsl(185deg, 42%, 37%);
+  --key-shadow-a: hsl(185deg, 58%, 25%);
+  --key-bg-toggle: hsl(25deg, 98%, 40%);
+  --key-shadow-b: hsl(25deg, 99%, 27%);
+  --key-bg-b: hsl(45deg, 7%, 89%);
+  --key-shadow-c: hsl(35deg, 11%, 61%);
+  --text-highlights: hsl(60deg, 10%, 19%);
+  --text-dark: hsl(0deg, 0%, 100%);
+}
+
+html[data-theme=theme-three] {
+  --main-bg: hsl(268deg, 75%, 9%);
+  --toggle-bg: hsl(268deg, 71%, 12%);
+  --screen-bg: hsl(268deg, 71%, 12%);
+  --key-bg-a: hsl(281deg, 89%, 26%);
+  --key-shadow-a: hsl(285deg, 91%, 52%);
+  --key-bg-toggle: hsl(176deg, 100%, 44%);
+  --key-shadow-b: hsl(177deg, 92%, 70%);
+  --key-bg-b: hsl(268deg, 47%, 21%);
+  --key-shadow-c: hsl(290deg, 70%, 36%);
+  --text-highlights: hsl(52deg, 100%, 62%);
+  --text-dark: hsl(198deg, 20%, 13%);
+  --extra-white-text: hsl(0deg, 0%, 100%);
+}
+
+/* Universal Layout Styles */
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin: 3em auto 0;
+  padding: 1em;
+  min-width: 350px;
+  width: 90%;
+  max-width: 500px;
+}
+.calculator__title-container {
+  display: flex;
+  justify-content: space-between;
+}
+.calculator__theme-picker-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 120px;
+}
+.calculator__screen {
+  font-family: inherit;
+  font-size: 2em;
+  min-height: 80px;
+  text-align: right;
+  padding-right: 20px;
+  padding-left: 10px;
+}
+.calculator__keys {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(50px, 1fr));
+  grid-template-rows: repeat(5, minmax(50px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+.calculator .equal-sign {
+  grid-row: 5/6;
+  grid-column: 3/5;
+}
+.calculator .all-clear {
+  grid-row: 5/6;
+  grid-column: 1/3;
+}
+.calculator .add-sign {
+  grid-row: 2/3;
+  grid-column: 4/5;
+}
+.calculator .sub-sign {
+  grid-row: 3/4;
+  grid-column: 4/5;
+}
+.calculator .mult-sign {
+  grid-row: 4/5;
+  grid-column: 4/5;
+}
+.calculator .div-sign {
+  grid-row: 4/5;
+  grid-column: 3/4;
+}
+.calculator .delete {
+  grid-row: 1/2;
+  grid-column: 4/5;
+}
+.calculator .decimal {
+  grid-row: 4/5;
+  grid-column: 1/2;
+}
+
+/* Mobile Styles */
+/* Desktop Styles */
+input[type=radio] {
+  padding: 0;
+  margin: 2px;
+  height: 15px;
+  width: 15px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: var(--key-bg-toggle);
+  border-radius: 50%;
+  opacity: 0;
+}
+input[type=radio]:hover {
+  cursor: pointer;
+}
+
+.tri-state-toggle {
+  display: flex;
+  justify-content: center;
+  border: 3px solid var(--toggle-bg);
+  background-color: var(--toggle-bg);
+  border-radius: 50px;
+}
+
+#one {
+  opacity: 1;
+}
+
+.toggle-container .tri-state-toggle-labels {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 3px;
+}
+.toggle-container label {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.3em;
+}
+
+button {
+  border: none;
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 700;
+  background-color: var(--key-bg-b);
+  border-bottom: 3px solid var(--key-shadow-c);
+  color: var(--text-highlights);
+  border-radius: 4px;
+  cursor: pointer;
+  padding-top: 12px;
+  padding-bottom: 5px;
+}
+button:hover {
+  opacity: 0.95;
+}
+button:active {
+  box-shadow: inset 0px 0px 0px 1px var(--screen-bg);
+  border: none;
+}
+button:focus-visible {
+  outline: 2px solid var(--text-dark);
+}
+
+html[data-theme=theme-one] .calculator__title-container {
+  color: var(--text-dark);
+}
+html[data-theme=theme-one] .calculator__screen {
+  color: var(--text-dark);
+}
+
+.operator {
+  font-size: 0.8em;
+}
+
+.all-clear {
+  background-color: var(--key-bg-toggle);
+  border-color: var(--key-shadow-b);
+  color: var(--text-dark);
+}
+
+.equal-sign {
+  background-color: var(--key-bg-a);
+  border-color: var(--key-shadow-a);
+  color: hsl(0deg, 0%, 100%);
+}
+
+.delete {
+  font-size: 0.5em;
+  padding-top: 8px;
+  background-color: var(--key-bg-a);
+  border-color: var(--key-shadow-a);
+  color: hsl(0deg, 0%, 100%);
+}
+
+.all-clear,
+.equal-sign {
+  font-size: 0.6em;
+}
+
+.calculator {
+  background-color: var(--main-bg);
+}
+.calculator__title-container {
+  color: var(--text-highlights);
+  height: 56px;
+}
+.calculator__theme-title {
+  font-size: 0.3em;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  align-self: flex-end;
+  margin-bottom: 15px;
+}
+.calculator__keys {
+  background-color: var(--toggle-bg);
+  border-radius: 9px;
+}
+.calculator__screen {
+  font-size: 1.2em;
+  font-weight: 700;
+  background-color: var(--screen-bg);
+  color: var(--text-highlights);
+  border: none;
+  border-radius: 5px;
+  cursor: not-allowed;
+}
+.calculator__screen:focus-visible {
+  outline: 2px solid var(--text-dark);
+}/*# sourceMappingURL=main.css.map */
