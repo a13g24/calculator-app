@@ -1,94 +1,137 @@
-# Frontend Mentor - Calculator app
+# Frontend Mentor - Calculator app solution
 
-![Design preview for the Calculator app coding challenge](./design/desktop-preview.jpg)
+This is a solution to the [Calculator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/calculator-app-9lteq5N29). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-## Welcome! 👋
+## Table of contents
 
-Thanks for checking out this front-end coding challenge.
+- [Frontend Mentor - Calculator app solution](#frontend-mentor---calculator-app-solution)
+  - [Table of contents](#table-of-contents)
+  - [Overview](#overview)
+    - [The challenge](#the-challenge)
+    - [Screenshot](#screenshot)
+  - [My process](#my-process)
+    - [Built with](#built-with)
+    - [What I learned](#what-i-learned)
+    - [Continued development](#continued-development)
+    - [Useful resources](#useful-resources)
+  - [Author](#author)
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
+**Note: Delete this note and update the table of contents based on what sections you keep.**
 
-**To do this challenge, you need a good understanding of HTML, CSS and JavaScript.**
+## Overview
 
-## The challenge
+### The challenge
 
-Your challenge is to build out this calculator app and get it looking as close to the design as possible.
-
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
-
-Your users should be able to:
+Users should be able to:
 
 - See the size of the elements adjust based on their device's screen size
-- Perform mathematical operations like addition, subtraction, multiplication, and division
+- Perform mathmatical operations like addition, subtraction, multiplication, and division
 - Adjust the color theme based on their preference
-- **Bonus**: Have their initial theme preference checked using `prefers-color-scheme` and have any additional changes saved in the browser
 
-Want some support on the challenge? [Join our Slack community](https://www.frontendmentor.io/slack) and ask questions in the **#help** channel.
+### Screenshot
 
-## Where to find everything
+![Screenshot of calculator app](./images/screenshot.gif)
 
-Your task is to build out the project to the designs inside the `/design` folder. You will find both a mobile and a desktop version of the design. 
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`. 
+## My process
 
-If you would like the design files (we provide Sketch & Figma versions) to inspect the design in more detail, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
+### Built with
 
-You will find all the required assets in the `/images` folder. The assets are already optimized.
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- CSS Grid
+- [Sass](https://sass-lang.com/) - Sass CSS preprocessor
+- Mobile-first workflow
 
-There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
+### What I learned
 
-## Building your project
+Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+To see how you can add code snippets, see below:
 
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+I learned a ton with this project. Especially learning about Sass, which I'm glad I
+took the extra time to do so because it vastly improved the architecture of the
+project and made things more manageable. I learned about an architecture style 
+using Sass that separated the partials using many different scss files. This 
+helped me focus on what I was doing. One thing I'm proud of is how I used mixins
+and Sass loops to generate the different themes in CSS, but needing to do so by
+defining CSS variables. Checkout _themes.scss for how I did this. When all said 
+and done with this idea, it was as simple as:
 
-## Deploying your project
+```scss
+$themes: theme-one, theme-two, theme-three;
+@each $theme in $themes {
+    html[data-theme=#{$theme}] {
+        @if $theme == theme-one {
+            @include themes.theme-background(themes.$t1-main-bg, themes.$t1-toggle-bg, themes.$t1-screen-bg); 
+            @include themes.theme-keys(themes.$t1-key-bg-a, themes.$t1-key-shadow-a, 
+                                    themes.$t1-key-bg-toggle, themes.$t1-key-shadow-b, 
+                                    themes.$t1-key-bg-b, themes.$t1-key-shadow-c);
+            @include themes.theme-text(themes.$t1-text-highlights, themes.$t1-text-dark);
+        } @else if $theme == theme-two {
+            @include themes.theme-background(themes.$t2-main-bg, themes.$t2-toggle-bg, themes.$t2-screen-bg); 
+            @include themes.theme-keys(themes.$t2-key-bg-a, themes.$t2-key-shadow-a, 
+                                    themes.$t2-key-bg-toggle, themes.$t2-key-shadow-b, 
+                                    themes.$t2-key-bg-b, themes.$t2-key-shadow-c);
+            @include themes.theme-text(themes.$t2-text-highlights, themes.$t2-text-dark);
+        } @else if $theme == theme-three {
+            @include themes.theme-background(themes.$t3-main-bg, themes.$t3-toggle-bg, themes.$t3-screen-bg); 
+            @include themes.theme-keys(themes.$t3-key-bg-a, themes.$t3-key-shadow-a, 
+                                    themes.$t3-key-bg-toggle, themes.$t3-key-shadow-b, 
+                                    themes.$t3-key-bg-b, themes.$t3-key-shadow-c);
+            @include themes.theme-text(themes.$t3-text-highlights, themes.$t3-text-dark);
+            --extra-white-text: #{themes.$t3-extra-white-text};
+        }
+    }
+}
+```
 
-As mentioned above, there are many ways to host your project for free. Our recommend hosts are:
+in order to create the various themes.
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+Secondly, I learned a lot about JavaScript and learned a clever trick using 
+regular expressions. Because JavaScript does not allow lookbehinds, I found a
+nice hack on how to still get away with inserting commas every 3 places in a 
+number, but also needing to exclude them from the right-hand side of a decimal
+point. Here's a snippet from `calculator.js`:
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
+```js
+// insert new commas
+const regexOne = /(^|[^0-9.])([0-9]{4,})/g; // selects part before decimal
+const regexTwo = /[0-9](?=(?:[0-9]{3})+(?![0-9]))/g; // selects every 3rd num
 
-## Create a custom `README.md`
+// ensures only part before decimal is comma delimited
+screen.value = screen.value.replace(regexOne, ($0, $1, $2) => {
+    return $1 + $2.replace(regexTwo, '$&,');
+})
+```
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+I also needed to figure out how to dynamically scale the size of the `<input>`
+text depending on the current width of its container. This required me to 
+figure out a way to measure the widths of characters. It hurts performance a bit,
+and feels a bit tacky, but it works for the most part.
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+### Continued development
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+I'd like to create an `eval()` independent solution for this. I just didn't have time
+to implement a parser and tokenize everything. But I think that would be a fun project
+to do later on. I'd also like to refactor my dynamic resizing solution for the screen text.
 
-## Submitting your solution
+### Useful resources
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://medium.com/frontend-mentor/a-complete-guide-to-submitting-solutions-on-frontend-mentor-ac6384162248) for tips on how to do this.
+- [Regular Expressons Cookbook](https://smile.amazon.com/Regular-Expressions-Cookbook-Solutions-Programming/dp/1449319432/?_encoding=UTF8&pd_rd_w=IxntT&content-id=amzn1.sym.e4bd6ac6-9035-4a04-92a6-fc4ad60e09ad&pf_rd_p=e4bd6ac6-9035-4a04-92a6-fc4ad60e09ad&pf_rd_r=VH3B9G6418F56183WAKH&pd_rd_wg=lHkR2&pd_rd_r=99baf17a-7075-4ed4-a4b1-ab244424c6af&ref_=pd_gw_ci_mcx_mr_hp_atf_m) - This helped me tremendously when figuring out the comma insertion problem.
+- [3-Way Toggle Switch](https://webcodespace.com/how-to-create-a-three-state-toggle-switch-using-html-css-and-javascript/) - This helped me 
+implement the 3-way toggle switch for theme selection.
+- [Making Multiple Themes](https://lukelowrey.com/css-variable-theme-switcher/) - This helped my
+approach with how to make multiple themes using CSS.
+- [Using Grid to Make a Calculator](https://freshman.tech/css-grid-calculator/) - This helped me
+refactor my HTML to better make the calculator.
+- [Regex Tester](https://regex101.com/) - This was indespensible when experimenting with regex patterns.
+- [Sass Architecture](https://itnext.io/structuring-your-sass-projects-c8d41fa55ed4) - This helped me 
+organize my Sass better.
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
 
-## Sharing your solution
+## Author
 
-There are multiple places you can share your solution:
-
-1. Share your solution page in the **#finished-projects** channel of the [Slack community](https://www.frontendmentor.io/slack). 
-2. Tweet [@frontendmentor](https://twitter.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in the tweet. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on other social channels like LinkedIn.
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
-
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
-
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
-
-## Got feedback for us?
-
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
-
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
-
-**Have fun building!** 🚀
+- Website - [Aaron Gomez](http://ohof.one)
+- Frontend Mentor - [@a13g24](https://www.frontendmentor.io/profile/a13g24)
