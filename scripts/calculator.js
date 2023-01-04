@@ -121,14 +121,9 @@ function handleNumber(numKey) {
     // append entered number to existing one
     screen.value += enteredValue;
 
-    // insert new commas
-    const regexOne = /(^|[^0-9.])([0-9]{4,})/g; // selects part before decimal
-    const regexTwo = /[0-9](?=(?:[0-9]{3})+(?![0-9]))/g; // selects every 3rd num
+    insertCommas(screen.value);
 
-    // ensures only part before decimal is comma delimited
-    screen.value = screen.value.replace(regexOne, ($0, $1, $2) => {
-        return $1 + $2.replace(regexTwo, '$&,');
-    })
+    // insert new commas
 }
 
 /**
@@ -204,6 +199,8 @@ function insertDecimal(key) {
 function deleteLastEntry(key) {
     let lastChar = screen.value[screen.value.length - 1];
 
+    screen.value = clearCommas(screen.value);
+
     // flip decimal counter bit for current term
     if (lastChar === '.') {
         // handles special case <op><period>0
@@ -218,6 +215,8 @@ function deleteLastEntry(key) {
         // flip decimal counter
         decimalCounter = !decimalCounter;
 
+        insertCommas(screen.value);
+
         // exit early
         return null;
     }
@@ -228,11 +227,29 @@ function deleteLastEntry(key) {
     } else {
         screen.value = screen.value.substring(0, screen.value.length - 1);
     }
+    insertCommas(screen.value);
 }
 
 /**
  * Evaluates expression on screen
  */
 function calculate() {
-    screen.value = eval(screen.value.replace(/,/g, ''));
+    let evaluatedExpression = eval(clearCommas(screen.value));
+
+    insertCommas(String(evaluatedExpression));
+}
+
+/**
+ * Inserts commas on the left-hand side of number (excludes RHS of decimal).
+ * @param {string} s - The string to insert commas at
+ */
+function insertCommas(s) {
+    // insert new commas
+    const regexOne = /(^|[^0-9.])([0-9]{4,})/g; // selects part before decimal
+    const regexTwo = /[0-9](?=(?:[0-9]{3})+(?![0-9]))/g; // selects every 3rd num
+
+    // ensures only part before decimal is comma delimited
+    screen.value = s.replace(regexOne, ($0, $1, $2) => {
+        return $1 + $2.replace(regexTwo, '$&,');
+    })
 }

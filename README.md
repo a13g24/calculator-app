@@ -16,8 +16,6 @@ This is a solution to the [Calculator app challenge on Frontend Mentor](https://
     - [Useful resources](#useful-resources)
   - [Author](#author)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
 
 ### The challenge
@@ -45,10 +43,6 @@ Users should be able to:
 - Mobile-first workflow
 
 ### What I learned
-
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
-
-To see how you can add code snippets, see below:
 
 I learned a ton with this project. Especially learning about Sass, which I'm glad I
 took the extra time to do so because it vastly improved the architecture of the
